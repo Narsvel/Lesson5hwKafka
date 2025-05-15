@@ -11,6 +11,7 @@ import java.util.Properties;
 @Service
 public class UserKafkaProducer {
 
+    //также можно добавить все параметры через application.properties, такой вариант в UserKafkaConsumer
     private static Properties addProperties() {
         Properties proper = new Properties();
         //указываем порты для передачи данных в kafka
@@ -24,7 +25,7 @@ public class UserKafkaProducer {
     public void addNewUser(String email) {
 
         Properties proper = addProperties();
-
+        //использую 0 партицию в топике sandbox
         try (var producer = new KafkaProducer<String, String>(proper)) {
             producer.send(new ProducerRecord<>("sandbox", 0,"create", email));
         }
@@ -33,7 +34,7 @@ public class UserKafkaProducer {
     public void deleteUser(String email) {
 
         Properties proper = addProperties();
-
+        //использую 1 партицию в топике sandbox
         try (var producer = new KafkaProducer<String, String>(proper)) {
             producer.send(new ProducerRecord<>("sandbox", 1,"delete", email));
         }
