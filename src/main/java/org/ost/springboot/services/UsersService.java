@@ -3,6 +3,7 @@ package org.ost.springboot.services;
 import org.ost.springboot.models.User;
 import org.ost.springboot.repositories.UsersRepository;
 import org.ost.springboot.utils.UserKafkaProducer;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
